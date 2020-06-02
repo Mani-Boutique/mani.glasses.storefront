@@ -1,34 +1,44 @@
-<div class="nav-wrapper">
-    <ul class="nav" *ngIf="collectionTree$ | async as tree">
-        <li class="nav-item" *ngFor="let collection of tree.children"
-            (mouseenter)="onMouseEnter(collection)"
-            (mouseleave)="close($event)">
-            <a class="nav-link"
-               [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
-               (touchstart)="onTopLevelClick($event, collection)"
-               [routerLink]="['/category', collection | collectionUrl ]">{{ collection.name }}</a>
-        </li>
-    </ul>
-</div>
+<nav class="mainmenu_nav mainmenu__nav">
+  <ul class="main_menu" *ngIf="collectionTree$ | async as tree">
+    <li>
+      <a [routerLink]="['/']">Trang chủ</a>
+    </li>
+    <li class="drop" *ngFor="let collection of tree.children"
+      (mouseenter)="onMouseEnter(collection)"
+      (mouseleave)="close($event)">
+      <a
+         [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
+         (touchstart)="onTopLevelClick($event, collection)"
+         [routerLink]="['/category', collection | collectionUrl ]">{{ collection.name }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/']">Tin tức</a>
+    </li>
+    <li>
+      <a [routerLink]="['/']">Giới thiệu</a>
+    </li>
+    <li>
+      <a [routerLink]="['/']">Liên hệ</a>
+    </li>
+  </ul>
+</nav>
 
 <ng-template #menuTemplate>
-    <div class="collections-menu-sub-collections"
-         *ngIf="activeCollection?.children?.length"
-         (touchstart)="captureTouchStart($event)"
-         (mouseenter)="onMouseEnter(activeCollection)"
-         (mouseleave)="close()"
-    >
-        <div class="container d-flex flex-wrap">
-            <div class="level-1-block" *ngFor="let level1 of activeCollection.children">
-                <vsf-collection-card [collection]="level1"></vsf-collection-card>
-                <ng-container *ngFor="let level2 of level1.children">
-                    <a class="level-2-link"
-                       [routerLink]="['/category', level2 | collectionUrl]"
-                       (click)="close()">
-                        {{ level2.name }}
-                    </a>
-                </ng-container>
-            </div>
-        </div>
-    </div>
+  <ul
+    class="dropdown collections-menu-sub-collections"
+    *ngIf="activeCollection?.children?.length"
+     (touchstart)="captureTouchStart($event)"
+     (mouseenter)="onMouseEnter(activeCollection)"
+     (mouseleave)="close()"
+  >
+    <li *ngFor="let level1 of activeCollection.children">
+      <ng-container *ngFor="let level2 of level1.children">
+        <a class="level-2-link"
+           [routerLink]="['/category', level2 | collectionUrl]"
+           (click)="close()">
+          {{ level2.name }}
+        </a>
+      </ng-container>
+    </li>
+  </ul>
 </ng-template>

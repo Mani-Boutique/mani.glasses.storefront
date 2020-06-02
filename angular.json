@@ -34,7 +34,14 @@
             "styles": [
               "src/styles/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/vendor/modernizr-3.6.0.min.js",
+              "src/assets/js/vendor/jquery-3.3.1.min.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/plugins.js",
+              "src/assets/js/main.js"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles",

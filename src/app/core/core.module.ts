@@ -29,6 +29,8 @@ import { ProductSearchBarComponent } from './components/product-search-bar/produ
 import { buildIconLibrary } from './icon-library';
 import { DefaultInterceptor } from './providers/data/interceptor';
 
+import { SliderDirective } from './components/home-page/slider.directive';
+
 const CORE_COMPONENTS = [
     ProductListComponent,
     ProductDetailComponent,
@@ -54,6 +56,7 @@ let providedCacheState: any | undefined;
 @NgModule({
     declarations: [
         ...CORE_COMPONENTS,
+        SliderDirective
     ],
     imports: [
         HttpClientModule,

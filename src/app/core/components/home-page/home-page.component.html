@@ -1,20 +1,195 @@
-<div class="hero" [style.background-image]="heroImage">
-    <h1 class="display-1 title text-center">vendure storefront</h1>
-</div>
+<!-- Start Slider Area -->
+<div class="slider_area slide_active">
+  <!-- Start Single Slide -->
+  <div class="slide slide_fixed_height bg_image--1 d-flex align-items-center poss_relative animation__style01">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
 
-<div class="container">
-    <div class="top-categories mt-5">
-        <vsf-collection-card *ngFor="let collection of collections$ | async"
-                             [collection]="collection">
-        </vsf-collection-card>
+          <div class="slide_text">
+            <h3>Unbelievable low prices</h3>
+            <h1>GLASSES FOR
+              <br> MEN & WOMEN</h1>
+            <a href="#">Buy Now</a>
+          </div>
+
+          <div class="rotate_titlE">
+            <h2>GET UP TO
+              <span>65%</span> Off</h2>
+          </div>
+        </div>
+      </div>
     </div>
-    <h3 class="display-4 mt-5">Top Sellers</h3>
-    <div class="product-list">
+  </div>
+  <!-- End Single Slide -->
+  <!-- Start Single Slide -->
+  <div class="slide slide_fixed_height bg_image--8 d-flex align-items-center poss_relative animation__style01">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+
+          <div class="slide_text">
+            <h3>Unbelievable low prices</h3>
+            <h1>GLASSES FOR
+              <br> MEN & WOMEN</h1>
+            <a href="#">Buy Now</a>
+          </div>
+
+          <div class="rotate_titlE">
+            <h2>GET UP TO
+              <span>65%</span> Off</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Single Slide -->
+  <!-- Start Single Slide -->
+  <div class="slide slide_fixed_height bg_image--1 d-flex align-items-center poss_relative animation__style01">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+
+          <div class="slide_text">
+            <h3>Unbelievable low prices</h3>
+            <h1>GLASSES FOR
+              <br> MEN & WOMEN</h1>
+            <a href="#">Buy Now</a>
+          </div>
+
+          <div class="rotate_titlE">
+            <h2>GET UP TO
+              <span>65%</span> Off</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Single Slide -->
+
+</div>
+<!-- End Slider Area -->
+
+<!-- Start Product Area -->
+<div class="product_area section-pt-xl section-pb-xl bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section_title text-center">
+          <h2>HÀNG MỚI VỀ</h2>
+          <p>Eye chasmish are very important for thos whos have some difficult in their eye to see every hing clearly and perfectly</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="product_tab_name justify-content-center nav" role="tablist">
+          <a class="active" href="#item1" data-toggle="tab"> Tất cả</a>
+          <a href="#item2" data-toggle="tab"> Hot</a>
+          <a href="#item3" data-toggle="tab"> Mới</a>
+        </div>
+      </div>
+    </div>
+    <div class="tab_content">
+      <!-- Start Single Content -->
+      <div class="row single_content tab-pane fade show active" id="item1" role="tabpanel">
         <ng-container *ngIf="topSellersLoaded$ | async; else placeholders">
-            <vsf-product-card *ngFor="let product of topSellers$ | async" [product]="product"></vsf-product-card>
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of topSellers$ | async">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
         </ng-container>
         <ng-template #placeholders>
-            <vsf-product-card *ngFor="let product of placeholderProducts" [product]="product"></vsf-product-card>
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of placeholderProducts">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
         </ng-template>
+      </div>
+      <!-- End Single Content -->
+      <!-- Start Single Content -->
+      <div class="row single_content tab-pane fade show active" id="item2" role="tabpanel">
+        <ng-container *ngIf="topSellersLoaded$ | async; else placeholders">
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of topSellers$ | async">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
+        </ng-container>
+        <ng-template #placeholders>
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of placeholderProducts">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
+        </ng-template>
+      </div>
+      <!-- End Single Content -->
+      <!-- Start Single Content -->
+      <div class="row single_content tab-pane fade show active" id="item3" role="tabpanel">
+        <ng-container *ngIf="topSellersLoaded$ | async; else placeholders">
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of topSellers$ | async">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
+        </ng-container>
+        <ng-template #placeholders>
+          <div class="col-lg-3 col-xl-3 col-sm-6 col-12" *ngFor="let product of placeholderProducts">
+            <vsf-product-card [product]="product"></vsf-product-card>
+          </div>
+        </ng-template>
+      </div>
+      <!-- End Single Content -->
     </div>
+  </div>
 </div>
+<!-- End Product Area -->
+
+<!-- Start Banner Area -->
+<div class="banner_area">
+  <div class="row row--2">
+
+    <div class="col-lg-4 col-sm-6 col-12">
+      <div class="banner">
+        <div class="thumb">
+          <a href="#">
+            <img src="assets/img/banner/banner-1.jpg" alt="banner img">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6 col-12">
+      <div class="banner">
+        <div class="thumb">
+          <a href="#">
+            <img src="assets/img/banner/banner-2.jpg" alt="banner img">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6 col-12">
+      <div class="banner">
+        <div class="thumb">
+          <a href="#">
+            <img src="assets/img/banner/banner-3.jpg" alt="banner img">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End Banner Area -->
+
+<!--
+<div class="container">
+  <div class="top-categories mt-5">
+    <vsf-collection-card *ngFor="let collection of collections$ | async"
+               [collection]="collection">
+    </vsf-collection-card>
+  </div>
+  <h3 class="display-4 mt-5">Top Sellers</h3>
+  <div class="product-list">
+    <ng-container *ngIf="topSellersLoaded$ | async; else placeholders">
+      <vsf-product-card *ngFor="let product of topSellers$ | async" [product]="product"></vsf-product-card>
+    </ng-container>
+    <ng-template #placeholders>
+      <vsf-product-card *ngFor="let product of placeholderProducts" [product]="product"></vsf-product-card>
+    </ng-template>
+  </div>
+</div> -->
