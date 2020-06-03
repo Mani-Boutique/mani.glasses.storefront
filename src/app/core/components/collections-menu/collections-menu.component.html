@@ -1,27 +1,29 @@
-<nav class="mainmenu_nav mainmenu__nav">
-  <ul class="main_menu" *ngIf="collectionTree$ | async as tree">
-    <li>
-      <a [routerLink]="['/']">Trang chủ</a>
-    </li>
-    <li class="drop" *ngFor="let collection of tree.children"
-      (mouseenter)="onMouseEnter(collection)"
-      (mouseleave)="close($event)">
-      <a
-         [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
-         (touchstart)="onTopLevelClick($event, collection)"
-         [routerLink]="['/category', collection | collectionUrl ]">{{ collection.name }}</a>
-    </li>
-    <li>
-      <a [routerLink]="['/']">Tin tức</a>
-    </li>
-    <li>
-      <a [routerLink]="['/']">Giới thiệu</a>
-    </li>
-    <li>
-      <a [routerLink]="['/']">Liên hệ</a>
-    </li>
-  </ul>
-</nav>
+<div class="glass_toggle_menu">
+  <nav class="mainmenu_nav mainmenu__nav" [ngClass]="{'active': isMobileToggle}">
+    <ul class="main_menu" *ngIf="collectionTree$ | async as tree">
+      <li class="drop" *ngFor="let collection of tree.children"
+        (mouseenter)="onMouseEnter(collection)"
+        (mouseleave)="close($event)">
+        <a
+          [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
+          (touchstart)="onTopLevelClick($event, collection)"
+          [routerLink]="['/category', collection | collectionUrl ]">{{ collection.name }}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/']">Tin tức</a>
+      </li>
+      <li>
+        <a [routerLink]="['/']">Khuyến mãi</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="hamburger-box button mobile-toggle" (click)="mobileToggle()" [ngClass]="{'active': isMobileToggle}">
+    <span class="mobile-toggle__icon"></span>
+  </div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu d-block d-lg-none"></div>
+<!-- Mobile Menu -->
 
 <ng-template #menuTemplate>
   <ul

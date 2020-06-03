@@ -44,6 +44,7 @@ export class ProductListControlsComponent implements OnChanges {
 
     inactiveFacetValues(values: FacetWithValues['values']): FacetWithValues['values'] {
         const activeIds = this.activeFacetValueIds();
+        console.log(values)
         return values.filter(v => !activeIds.includes(v.id));
     }
 

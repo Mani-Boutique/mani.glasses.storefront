@@ -1,57 +1,119 @@
-<div class="container">
-    <vsf-collection-breadcrumbs [breadcrumbs]="breadcrumbs"
-                                *ngIf="product"
-                                class="mb-2"
-                                [linkLast]="true"></vsf-collection-breadcrumbs>
-    <ng-template [ngIf]="product" [ngIfElse]="placeholder">
-        <div class="row">
-            <div class="col-12 col-md-6 text-center">
-                <vsf-asset-gallery [assets]="product.assets"
-                                   [selectedAssetId]="product.featuredAsset?.id"></vsf-asset-gallery>
-            </div>
-            <div class="col-12 col-md-6" #zoomPreviewArea>
-                <h2 class="display-4 product-name">{{ product.name }}</h2>
-                <div class="purchase-options">
-                    <div class="variant-selector" *ngIf="product.variants.length > 1">
-                        <select [(ngModel)]="selectedVariant" class="form-control">
-                            <option *ngFor="let variant of product.variants"
-                                    [ngValue]="variant">{{ variant.name }}</option>
-                        </select>
-                    </div>
-                    <div class="add-to-cart-row">
-                        <div class="sku">
-                            {{ selectedVariant?.sku }}
-                        </div>
-                        <div class="price">
-                            {{ selectedVariant?.priceWithTax | formatPrice }}
-                        </div>
-                        <div class="qty mr-md-2 ml-2">
-                            <input type="number" min="0" max="99" placeholder="Qty" [(ngModel)]="qty"
-                                   class="form-control form-control-lg">
-                        </div>
-                        <button [disabled]="qty === 0"
-                                class="btn btn-primary btn-lg"
-                                (click)="addToCart(selectedVariant, qty)">Add to cart
-                        </button>
-                    </div>
-                </div>
-                <div class="description" [innerHTML]="product.description">
-                </div>
-            </div>
+<!-- Start Bradcaump area -->
+<div class="bradcaump_area bg_image--4" *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bradcaump_inner text-center">
+        <h2 class="bradcaump-title">{{ product.name }}</h2>
+        <vsf-collection-breadcrumbs [breadcrumbs]="breadcrumbs" *ngIf="product" [linkLast]="true"></vsf-collection-breadcrumbs>
         </div>
-    </ng-template>
-    <ng-template #placeholder>
-        <div class="placeholder-breadcrumb loading-placeholder"></div>
-        <div class="row">
-            <div class="col-12 col-md-6 text-center">
-                <div class="product-image">
-                    <div class="placeholder-image loading-placeholder"></div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="placeholder-title loading-placeholder"></div>
-                <div class="placeholder-description loading-placeholder"></div>
-            </div>
-        </div>
-    </ng-template>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- End Bradcaump area -->
+
+<ng-template [ngIf]="product" [ngIfElse]="placeholder">
+  <div class="gm_single_product pt--100 pb--100 bg--white">
+    <div class="container">
+      <div class="row align-content-center">
+        <div class="col-lg-6 col-12">
+          <vsf-asset-gallery [assets]="product.assets"
+            [selectedAssetId]="product.featuredAsset?.id"></vsf-asset-gallery>
+        </div>
+        <div class="col-lg-6 col-12" #zoomPreviewArea>
+          <div class="single_product_inner">
+            <h4>{{ product.name }}</h4>
+            <div class="price">
+              <span class="new">{{ selectedVariant?.priceWithTax | formatPrice }}</span>
+              <span class="old">{{ selectedVariant?.priceWithTax | formatPrice }}</span>
+            </div>
+            <div class="pro_dtl">
+              <p>Sản phẩm có sẵn.
+                <br>Còn:
+                <span class="heading-color">1154</span> sản phẩm trong kho.
+              </p>
+            </div>
+            <div class="product_cart_action">
+              <div class="add_to_cart">
+                <ul class="cart_list">
+                  <li class="shopping_basket">
+                    <a href="javascript:void(0)" (click)="addToCart(selectedVariant, qty)">
+                    <i class="fa fa-shopping-basket"></i> Thêm giở hàng</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="cart_qun_inner">
+                <div class="pro-quantity">
+                  <div class="pro-qty"><input type="number" min="0" max="99" placeholder="Qty" [(ngModel)]="qty"></div>
+                </div>
+              </div>
+            </div>
+            <div class="product_share">
+              <span>Share:</span>
+              <ul class="social_share">
+                <li>
+                  <a class="facebook" href="#">
+                  <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="twitter" href="#">
+                  <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="google-plus" href="#">
+                  <i class="fa fa-google-plus"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="rss" href="#">
+                  <i class="fa fa-rss"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="instagram" href="#">
+                  <i class="fa fa-instagram"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product_review">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="description_nav nav nav-tabs d-block" role="tablist">
+              <a class="active" id="descrip-tab" data-toggle="tab" href="#descrip" role="tab" aria-controls="descrip" aria-selected="true">Mô tả sản phẩm</a>
+            </div>
+          </div>
+        </div>
+        <div class="tab_container">
+          <div class="single_review_content tab-pane fade show active" id="descrip" role="tabpanel">
+            <div class="content" [innerHTML]="product.description">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #placeholder>
+  <div class="placeholder-breadcrumb loading-placeholder"></div>
+  <div class="row">
+    <div class="col-12 col-md-6 text-center">
+      <div class="product-image">
+        <div class="placeholder-image loading-placeholder"></div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="placeholder-title loading-placeholder"></div>
+      <div class="placeholder-description loading-placeholder"></div>
+    </div>
+  </div>
+</ng-template>

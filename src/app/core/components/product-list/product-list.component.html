@@ -1,58 +1,81 @@
-<div class="masthead" [class.search-mode]="searchTerm$ | async">
-    <div class="masthead-bg" [style.background-image]="mastheadBackground$ | async"></div>
-    <div class="container position-relative">
-        <vsf-collection-breadcrumbs [breadcrumbs]="breadcrumbs$ | async"></vsf-collection-breadcrumbs>
-        <h1 class="display-1 collection-name">{{ (collection$ | async)?.name }}</h1>
-        <h1 class="display-4 text-muted" *ngIf="searchTerm$ | async as term">
-             Results for <span class="text-dark">"{{ term }}"</span>
-        </h1>
-    </div>
-
-</div>
-<div class="container">
+ <!-- Start Bradcaump area -->
+ <div class="bradcaump_area bg_image--4">
+  <div class="container">
     <div class="row">
-        <div class="col-12 col-md-2">
-            <vsf-product-list-controls [facetValues]="facetValues$ | async"
-                                       [totalResults]="totalResults$ | async"></vsf-product-list-controls>
+      <div class="col-lg-12">
+        <div class="bradcaump_inner text-center">
+          <h2 class="bradcaump-title">{{ (collection$ | async)?.name }}</h2>
+          <vsf-collection-breadcrumbs [breadcrumbs]="breadcrumbs$ | async"></vsf-collection-breadcrumbs>
         </div>
-        <div class="col-12 col-md-10">
-            <ng-container *ngIf="collection$ | async as collection">
-                <div *ngIf="collection.children.length" class="child-categories d-flex flex-column flex-md-row">
-                    <vsf-collection-card *ngFor="let child of collection.children"
-                                         [collection]="child">
-                    </vsf-collection-card>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="(totalResults$ | async) !== 0; else noResults">
-                <div class="product-list">
-                    <ng-container *ngIf="(totalResults$ | async) !== null; else placeholders">
-                        <vsf-product-card *ngFor="let product of products$ | async"
-                                          [product]="product"></vsf-product-card>
-                    </ng-container>
-                    <ng-template #placeholders>
-                        <vsf-product-card *ngFor="let product of placeholderProducts"
-                                          [product]="product"></vsf-product-card>
-                    </ng-template>
-                    <div class="load-more flex-fill" *ngIf="displayLoadMore$ | async">
-                        <button class="btn btn-light btn-lg d-inline-flex align-items-center"
-                                (click)="loadMore()"
-                                [disabled]="loading$ | async">
-                            Load more
-                            <span [class.show]="loading$ | async"
-                                  class="loading-indicator spinner-grow spinner-grow-sm"
-                                  role="status"
-                                  aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
-            </ng-container>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
+<!-- End Bradcaump area -->
 
-<ng-template #noResults>
-    <div class="no-results col-12">
-        <p class="h1">No results</p>
-        <fa-icon icon="sad-cry" size="10x"></fa-icon>
+<div class="shop_area section-ptb-xl bg--white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-12 order-2 order-lg-1 sm-mt--30 md-mt--30">
+        <div class="shop_sidebar">
+          <!-- Start Single Wedget -->
+          <vsf-product-list-controls [facetValues]="facetValues$ | async"
+            [totalResults]="totalResults$ | async"></vsf-product-list-controls>
+          <!-- End Single Wedget -->
+          <!-- Start Single Wedget -->
+          <div class="sidebar_widget widget_banner mb--60">
+            <div class="sidebar_banner">
+              <a href="#"><img src="assets/img/banner/sidebar-banner.png" alt="sidebar banner"></a>
+            </div>
+          </div>
+          <!-- End Single Wedget -->
+        </div>
+      </div>
+      <div class="col-lg-9 col-12 order-1 order-lg-2">
+        <div class="shop_product_area">
+          <div class="tab_content">
+            <div class="row single_grid_product tab-pane fade show active" role="tabpanel" *ngIf="(totalResults$ | async) !== 0; else noResults">
+              <ng-container *ngIf="(totalResults$ | async) !== null; else placeholders">
+                <div class="col-lg-6 col-xl-4 col-sm-6 col-12" *ngFor="let product of products$ | async">
+                  <!-- Start Single Product -->
+                  <vsf-product-card [product]="product"></vsf-product-card>
+                  <!-- End Single Product -->
+                </div>
+              </ng-container>
+              <ng-template #placeholders>
+                <div class="col-lg-6 col-xl-4 col-sm-6 col-12" *ngFor="let product of placeholderProducts">
+                  <!-- Start Single Product -->
+                  <vsf-product-card [product]="product"></vsf-product-card>
+                  <!-- End Single Product -->
+                </div>
+              </ng-template>
+            </div>
+            <div class="load-more flex-fill" *ngIf="displayLoadMore$ | async">
+              <button class="btn btn-light btn-lg d-inline-flex align-items-center"
+                  (click)="loadMore()"
+                  [disabled]="loading$ | async">
+                Load more
+                <span [class.show]="loading$ | async"
+                  class="loading-indicator spinner-grow spinner-grow-sm"
+                  role="status"
+                  aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+          <!-- <ul class="pagination_style">
+            <li><a class="active" href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#"><i class="ti-angle-right"></i></a></li>
+          </ul> -->
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+<!-- End Shop Area -->
+<ng-template #noResults>
+  <div class="no-results col-12">
+    <p class="h1">No results</p>
+    <fa-icon icon="sad-cry" size="10x"></fa-icon>
+  </div>
 </ng-template>
