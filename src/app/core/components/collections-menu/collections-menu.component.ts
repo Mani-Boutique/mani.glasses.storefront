@@ -10,6 +10,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
+  AfterViewInit
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, map, takeUntil } from 'rxjs/operators';
@@ -26,7 +27,7 @@ import { arrayToTree, RootNode, TreeNode } from './array-to-tree';
   styleUrls: ['./collections-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CollectionsMenuComponent implements OnInit, OnDestroy {
+export class CollectionsMenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   collectionTree$: Observable<RootNode<GetCollections.Items>>;
   activeCollection: TreeNode<GetCollections.Items> | null;
@@ -38,6 +39,7 @@ export class CollectionsMenuComponent implements OnInit, OnDestroy {
   private overlayIsOpen$ = new Subject<boolean>();
   private setActiveCollection$ = new Subject<TreeNode<GetCollections.Items>>();
   private destroy$ = new Subject();
+  private timer: any = null;
 
   constructor(@Inject(DOCUMENT) private document: Document,
         private dataService: DataService,
@@ -73,6 +75,22 @@ export class CollectionsMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    clearTimeout(this.timer);
+  }
+
+  ngAfterViewInit() {
+    this.timer = setTimeout(() => {
+      const win: any = window;
+
+      win.jQuery('nav.mainmenu__nav').meanmenu({
+        meanMenuClose: 'X',
+        meanMenuCloseSize: '18px',
+        meanScreenWidth: '991',
+        meanExpandableChildren: true,
+        meanMenuContainer: '.mobile-menu',
+        onePage: true
+      });
+    }, 1000);
   }
 
   onTopLevelClick(event: MouseEvent, collection: TreeNode<GetCollections.Items>) {
@@ -100,7 +118,6 @@ export class CollectionsMenuComponent implements OnInit, OnDestroy {
   }
 
   mobileToggle() {
-    console.log('xx')
     this.isMobileToggle = !this.isMobileToggle;
   }
 

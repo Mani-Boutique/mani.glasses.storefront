@@ -1,13 +1,26 @@
 <div class="glass_toggle_menu">
   <nav class="mainmenu_nav mainmenu__nav" [ngClass]="{'active': isMobileToggle}">
     <ul class="main_menu" *ngIf="collectionTree$ | async as tree">
-      <li class="drop" *ngFor="let collection of tree.children"
-        (mouseenter)="onMouseEnter(collection)"
-        (mouseleave)="close($event)">
+      <li class="drop" *ngFor="let collection of tree.children">
         <a
           [class.active]="(setActiveCollection$ | async)?.id === collection.id && overlayIsOpen$ | async"
           (touchstart)="onTopLevelClick($event, collection)"
           [routerLink]="['/category', collection | collectionUrl ]">{{ collection.name }}</a>
+        <ul
+          class="dropdown collections-menu-sub-collections"
+          *ngIf="collection?.children?.length"
+        >
+          <li *ngFor="let level1 of collection.children">
+            <a [routerLink]="['/category', level1 | collectionUrl ]">{{ level1.name }}</a>
+            <ng-container *ngFor="let level2 of level1.children">
+              <a class="level-2-link"
+                [routerLink]="['/category', level2 | collectionUrl]"
+                (click)="close()">
+                {{ level2.name }}
+              </a>
+            </ng-container>
+          </li>
+        </ul>
       </li>
       <li>
         <a [routerLink]="['/']">Tin tức</a>

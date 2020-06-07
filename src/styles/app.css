@@ -68,7 +68,7 @@
 ***************************************/
 /* container 450px*/
 /* container 300px*/
-@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700|Poppins:300,400,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700|Roboto:300,400,500,600,700");
 @media only screen and (max-width: 575px) {
   .container {
     width: 450px; } }
@@ -394,7 +394,7 @@ body {
   line-height: 26px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #454545;
   font-weight: 400; }
   @media only screen and (max-width: 767px) {
@@ -1598,7 +1598,7 @@ select {
 
 /* Font specialized */
 .body-font {
-  font-family: "Poppins", sans-serif; }
+  font-family: "Roboto", sans-serif; }
 
 .heading-font {
   font-family: "Oswald", sans-serif; }
@@ -3937,6 +3937,7 @@ textarea:-ms-input-placeholder {
   -moz-box-align: center;
   align-items: center;
   display: flex;
+  min-height: 106px;
   position: relative; }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .service {
@@ -3952,15 +3953,17 @@ textarea:-ms-input-placeholder {
     .service {
       display: block;
       margin-bottom: 30px;
+      min-height: auto;
       text-align: center; } }
   .service::before {
     background: #b7b7b7 none repeat scroll 0 0;
     content: "";
-    height: 50px;
+    height: 106px;
     position: absolute;
     right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    /* top: 50%;
+    transform: translateY(-50%); */
     width: 2px; }
     @media only screen and (min-width: 1200px) and (max-width: 1599px) {
       .service::before {
@@ -3988,7 +3991,8 @@ textarea:-ms-input-placeholder {
       .service .icon {
         margin-bottom: 14px; } }
   .service .content {
-    padding-left: 20px; }
+    padding-left: 20px;
+  min-height: 106px; }
     @media only screen and (min-width: 1200px) and (max-width: 1599px) {
       .service .content {
         padding-left: 15px; } }

@@ -1,0 +1,23 @@
+.chasmishco_header {
+  .logo {
+    img {
+      height: 65px;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .container {
+      width: 325px;
+    }
+
+    .login_account {
+      .account > ul {
+        flex-direction: column;
+
+        li::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
